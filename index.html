@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网站列表</title>
+    <script>
+        async function loadWebsites() {
+            const response = await fetch('websites.json');
+            const websites = await response.json();
+            const listElement = document.getElementById('website-list');
+            websites.forEach(site => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = site.url;
+                link.textContent = site.name;
+                link.target = '_blank';
+                listItem.appendChild(link);
+                listElement.appendChild(listItem);
+            });
+        }
+        window.onload = loadWebsites;
+    </script>
+</head>
+
+<body>
+    <h1>我的网站列表</h1>
+    <ul id="website-list"></ul>
+</body>
+
+</html>
